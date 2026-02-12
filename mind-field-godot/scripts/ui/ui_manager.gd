@@ -113,8 +113,9 @@ func _update_status_bar() -> void:
 	# Update attendee count
 	if attendee_label:
 		var sim: Node = GameManager.simulation_manager
-		if sim:
-			var count := sim.get_attendees().size()
+		if sim and sim.has_method("get_attendees"):
+			@warning_ignore("unsafe_call")
+			var count: int = sim.get_attendees().size()
 			attendee_label.text = "👥 %d" % count
 
 func _update_bank_status() -> void:
