@@ -160,7 +160,8 @@ func _focus_district(bank_type: int) -> void:
 				cam.position = target_pos
 
 func _refresh_habits() -> void:
-	EventBus.habit_list_requested.emit()
+	if habit_panel and habit_panel.has_method("refresh"):
+		habit_panel.refresh()
 
 # --- Selection Panel (SC2-style) ---
 
