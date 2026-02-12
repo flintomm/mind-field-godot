@@ -124,10 +124,10 @@ func _update_bank_status() -> void:
 		return
 	
 	for i in range(4):
-		if i < bank_bars.size() and br.has_bank(i):
-			var balance: float = br.get_balance(i)
-			var capacity: float = br.get_capacity(i)
-			var bank_data: Dictionary = br.get_bank_data(i)
+		var bank: Bank = br.get_bank(i)
+		if bank:
+			var balance: float = bank.balance
+			var capacity: float = bank.capacity
 			var display_balance: int = int(balance)
 			if bank_bars[i]:
 				bank_bars[i].value = display_balance
