@@ -12,6 +12,8 @@ color = Color(0.3, 0.35, 0.25, 1)
 
 [node name="GridOverlay" type="Node2D" parent="."]
 
+[node name="VegetationLayer" type="Node2D" parent="."]
+
 [node name="NameLabel" type="Label" parent="."]
 offset_left = 10.0
 offset_top = 5.0

@@ -6,6 +6,7 @@ extends Node2D
 @onready var traffic_label: Label = $TrafficLabel
 @onready var grid_overlay: Node2D = $GridOverlay
 @onready var particles: GPUParticles2D = $AmbientParticles
+@onready var vegetation_layer: Node2D = $VegetationLayer
 
 var _border_lines: Node2D
 var _district: District
@@ -117,6 +118,79 @@ func _draw_terrain_details() -> void:
 		dot.color = _district.terrain_color.lightened(rng.randf_range(0.1, 0.25))
 		dot.color.a = 0.3
 		grid_overlay.add_child(dot)
+
+	_draw_vegetation()
+	_draw_water_features()
+
+func _draw_vegetation() -> void:
+	if vegetation_layer == null:
+		return
+	for child in vegetation_layer.get_children():
+		child.queue_free()
+
+	var rng := RandomNumberGenerator.new()
+	rng.seed = _random_seed + 20
+
+	# Draw trees/bushes around the district perimeter
+	var num_trees := 20
+	for i in range(num_trees):
+		var angle := rng.randf() * TAU
+		var dist := rng.randf_range(minf(_size.x, _size.y) * 0.35, minf(_size.x, _size.y) * 0.45)
+		var pos := Vector2(_size.x / 2.0, _size.y / 2.0) + Vector2(cos(angle), sin(angle)) * dist
+
+		var tree := ColorRect.new()
+		var size := rng.randf_range(15, 30)
+		tree.size = Vector2(size, size * 1.2)
+		tree.position = pos - tree.size / 2.0
+		
+		# Tree color based on district
+		match _district.district_type:
+			0:  # Ivorai - warm golden trees
+				tree.color = Color(0.6, 0.5, 0.2, 0.8)
+			1:  # Glyffins - metallic/silver trees
+				tree.color = Color(0.4, 0.45, 0.5, 0.8)
+			2:  # Zoraqians - purple/dark vegetation
+				tree.color = Color(0.3, 0.2, 0.4, 0.8)
+			3:  # Yagari - dark shadowy foliage
+				tree.color = Color(0.15, 0.15, 0.18, 0.9)
+		vegetation_layer.add_child(tree)
+
+	# Add some small bushes
+	var num_bushes := 15
+	for i in range(num_bushes):
+		var angle := rng.randf() * TAU
+		var dist := rng.randf_range(minf(_size.x, _size.y) * 0.3, minf(_size.x, _size.y) * 0.42)
+		var pos := Vector2(_size.x / 2.0, _size.y / 2.0) + Vector2(cos(angle), sin(angle)) * dist
+
+		var bush := ColorRect.new()
+		var size := rng.randf_range(8, 15)
+		bush.size = Vector2(size, size * 0.6)
+		bush.position = pos - bush.size / 2.0
+		bush.color = _district.terrain_color.lightened(0.2)
+		bush.color.a = 0.5
+		vegetation_layer.add_child(bush)
+
+func _draw_water_features() -> void:
+	if _district.district_type != 0:  # Only Ivorai has water features
+		return
+	
+	var rng := RandomNumberGenerator.new()
+	rng.seed = _random_seed + 30
+
+	# Add small pools of water/mist in Ivorai district
+	var num_pools := 3
+	for i in range(num_pools):
+		var angle := rng.randf() * TAU
+		var dist := rng.randf_range(50, minf(_size.x, _size.y) * 0.3)
+		var pos := Vector2(_size.x / 2.0, _size.y / 2.0) + Vector2(cos(angle), sin(angle)) * dist
+
+		var pool := ColorRect.new()
+		var size := rng.randf_range(30, 60)
+		pool.size = Vector2(size, size * 0.7)
+		pool.position = pos - pool.size / 2.0
+		pool.color = Color(0.3, 0.5, 0.7, 0.4)  # Water blue
+		pool.z_index = -2
+		grid_overlay.add_child(pool)
 
 func update_visual(district: District) -> void:
 	_district = district
