@@ -1,0 +1,393 @@
+[gd_scene load_steps=5 format=3 uid="uid://main_ui"]
+
+[ext_resource type="Script" path="res://scripts/ui/ui_manager.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/ui/snippet_panel.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/ui/habit_panel.gd" id="3"]
+[ext_resource type="Script" path="res://scripts/ui/day_unit_panel.gd" id="4"]
+
+[node name="MainUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1")
+
+[node name="TopBar" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 36.0
+grow_horizontal = 2
+
+[node name="StatusBar" type="HBoxContainer" parent="TopBar"]
+layout_mode = 2
+
+[node name="DayLabel" type="Label" parent="TopBar/StatusBar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Day 1"
+
+[node name="Sep1" type="VSeparator" parent="TopBar/StatusBar"]
+layout_mode = 2
+
+[node name="TimeLabel" type="Label" parent="TopBar/StatusBar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "12:00"
+
+[node name="Sep2" type="VSeparator" parent="TopBar/StatusBar"]
+layout_mode = 2
+
+[node name="BankBar0" type="ProgressBar" parent="TopBar/StatusBar"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(50, 0)
+value = 0.0
+show_percentage = false
+
+[node name="BankLabel0" type="Label" parent="TopBar/StatusBar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="BankBar1" type="ProgressBar" parent="TopBar/StatusBar"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(50, 0)
+value = 0.0
+show_percentage = false
+
+[node name="BankLabel1" type="Label" parent="TopBar/StatusBar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="BankBar2" type="ProgressBar" parent="TopBar/StatusBar"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(50, 0)
+value = 0.0
+show_percentage = false
+
+[node name="BankLabel2" type="Label" parent="TopBar/StatusBar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="BankBar3" type="ProgressBar" parent="TopBar/StatusBar"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(50, 0)
+value = 0.0
+show_percentage = false
+
+[node name="BankLabel3" type="Label" parent="TopBar/StatusBar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="Spacer" type="Control" parent="TopBar/StatusBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AttendeeLabel" type="Label" parent="TopBar/StatusBar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Attendees: 0"
+
+[node name="SidePanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = 40.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="SidePanel"]
+layout_mode = 2
+
+[node name="TabBar" type="HBoxContainer" parent="SidePanel/VBox"]
+layout_mode = 2
+
+[node name="TabSnippet" type="Button" parent="SidePanel/VBox/TabBar"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Snippets"
+
+[node name="TabHabits" type="Button" parent="SidePanel/VBox/TabBar"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Habits"
+
+[node name="TabDayUnit" type="Button" parent="SidePanel/VBox/TabBar"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Unit"
+
+[node name="ContentArea" type="PanelContainer" parent="SidePanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SnippetPanel" type="VBoxContainer" parent="SidePanel/VBox/ContentArea"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("2")
+
+[node name="BankSelector" type="HBoxContainer" parent="SidePanel/VBox/ContentArea/SnippetPanel"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 36)
+
+[node name="BankBtn0" type="Button" parent="SidePanel/VBox/ContentArea/SnippetPanel/BankSelector"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ivo"
+
+[node name="BankBtn1" type="Button" parent="SidePanel/VBox/ContentArea/SnippetPanel/BankSelector"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Gly"
+
+[node name="BankBtn2" type="Button" parent="SidePanel/VBox/ContentArea/SnippetPanel/BankSelector"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Zor"
+
+[node name="BankBtn3" type="Button" parent="SidePanel/VBox/ContentArea/SnippetPanel/BankSelector"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Yag"
+
+[node name="SnippetInput" type="TextEdit" parent="SidePanel/VBox/ContentArea/SnippetPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 80)
+placeholder_text = "What's on your mind?"
+
+[node name="MoodRow" type="HBoxContainer" parent="SidePanel/VBox/ContentArea/SnippetPanel"]
+layout_mode = 2
+
+[node name="MoodLabelPrefix" type="Label" parent="SidePanel/VBox/ContentArea/SnippetPanel/MoodRow"]
+layout_mode = 2
+text = "Mood:"
+
+[node name="MoodSlider" type="HSlider" parent="SidePanel/VBox/ContentArea/SnippetPanel/MoodRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -1.0
+max_value = 1.0
+step = 0.1
+
+[node name="MoodLabel" type="Label" parent="SidePanel/VBox/ContentArea/SnippetPanel/MoodRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Neutral"
+
+[node name="SubmitButton" type="Button" parent="SidePanel/VBox/ContentArea/SnippetPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Submit Snippet"
+
+[node name="HabitPanel" type="VBoxContainer" parent="SidePanel/VBox/ContentArea"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+script = ExtResource("3")
+
+[node name="CreateRow" type="HBoxContainer" parent="SidePanel/VBox/ContentArea/HabitPanel"]
+layout_mode = 2
+
+[node name="HabitNameInput" type="LineEdit" parent="SidePanel/VBox/ContentArea/HabitPanel/CreateRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Habit name..."
+
+[node name="FoundationDropdown" type="OptionButton" parent="SidePanel/VBox/ContentArea/HabitPanel/CreateRow"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CreateHabitButton" type="Button" parent="SidePanel/VBox/ContentArea/HabitPanel/CreateRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Create"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SidePanel/VBox/ContentArea/HabitPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HabitList" type="VBoxContainer" parent="SidePanel/VBox/ContentArea/HabitPanel/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DayUnitPanel" type="VBoxContainer" parent="SidePanel/VBox/ContentArea"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+script = ExtResource("4")
+
+[node name="RaceLabel" type="Label" parent="SidePanel/VBox/ContentArea/DayUnitPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "No Day Unit yet"
+
+[node name="StageLabel" type="Label" parent="SidePanel/VBox/ContentArea/DayUnitPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SnippetCountLabel" type="Label" parent="SidePanel/VBox/ContentArea/DayUnitPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ActiveTimeLabel" type="Label" parent="SidePanel/VBox/ContentArea/DayUnitPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="BarsLabel" type="Label" parent="SidePanel/VBox/ContentArea/DayUnitPanel"]
+layout_mode = 2
+text = "Mood / Energy / Focus"
+
+[node name="MoodBar" type="ProgressBar" parent="SidePanel/VBox/ContentArea/DayUnitPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 100.0
+show_percentage = false
+
+[node name="EnergyBar" type="ProgressBar" parent="SidePanel/VBox/ContentArea/DayUnitPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 100.0
+value = 50.0
+show_percentage = false
+
+[node name="FocusBar" type="ProgressBar" parent="SidePanel/VBox/ContentArea/DayUnitPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 100.0
+value = 50.0
+show_percentage = false
+
+[node name="AttendeeHeader" type="Label" parent="SidePanel/VBox/ContentArea/DayUnitPanel"]
+layout_mode = 2
+text = "Past Attendees:"
+
+[node name="AttendeeScroll" type="ScrollContainer" parent="SidePanel/VBox/ContentArea/DayUnitPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AttendeeList" type="VBoxContainer" parent="SidePanel/VBox/ContentArea/DayUnitPanel/AttendeeScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Minimap" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -140.0
+offset_right = 170.0
+offset_bottom = -10.0
+
+[node name="MinimapRect" type="ColorRect" parent="Minimap"]
+unique_name_in_owner = true
+layout_mode = 2
+color = Color(0.1, 0.15, 0.1, 0.8)
+
+[node name="MinimapIvorai" type="ColorRect" parent="Minimap/MinimapRect"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 78.0
+offset_bottom = 62.0
+color = Color(0.85, 0.78, 0.55, 0.6)
+
+[node name="MinimapGlyffins" type="ColorRect" parent="Minimap/MinimapRect"]
+layout_mode = 1
+offset_left = 82.0
+offset_top = 2.0
+offset_right = 158.0
+offset_bottom = 62.0
+color = Color(0.7, 0.72, 0.75, 0.6)
+
+[node name="MinimapZoraqians" type="ColorRect" parent="Minimap/MinimapRect"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 66.0
+offset_right = 78.0
+offset_bottom = 126.0
+color = Color(0.25, 0.18, 0.30, 0.6)
+
+[node name="MinimapYagari" type="ColorRect" parent="Minimap/MinimapRect"]
+layout_mode = 1
+offset_left = 82.0
+offset_top = 66.0
+offset_right = 158.0
+offset_bottom = 126.0
+color = Color(0.15, 0.15, 0.2, 0.6)
+
+[node name="CameraIndicator" type="ColorRect" parent="Minimap/MinimapRect"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 60.0
+offset_bottom = 50.0
+color = Color(1, 1, 1, 0.5)
+
+[node name="DistrictButtons" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -35.0
+offset_right = 120.0
+grow_horizontal = 2
+
+[node name="BtnIvorai" type="Button" parent="DistrictButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ivorai"
+flat = true
+
+[node name="BtnGlyffins" type="Button" parent="DistrictButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Glyffins"
+flat = true
+
+[node name="BtnZoraqians" type="Button" parent="DistrictButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Zoraqians"
+flat = true
+
+[node name="BtnYagari" type="Button" parent="DistrictButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Yagari"
+flat = true

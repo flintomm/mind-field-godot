@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Ivorai: Elephant-inspired, warm ivory/bronze, grounded, wide -->
+  <!-- Body: Wide rounded rectangle for grounded feel -->
+  <rect x="12" y="20" width="40" height="30" rx="10" fill="#F5E8C8" stroke="#CC9933" stroke-width="2"/>
+  <!-- Head: Large round head with trunk hint -->
+  <circle cx="32" cy="16" r="14" fill="#F5E8C8" stroke="#CC9933" stroke-width="2"/>
+  <!-- Trunk: Small curved line -->
+  <path d="M32 24 Q28 32 24 30" fill="none" stroke="#CC9933" stroke-width="2" stroke-linecap="round"/>
+  <!-- Eyes: Warm, wise -->
+  <circle cx="26" cy="14" r="2" fill="#5C3A1E"/>
+  <circle cx="38" cy="14" r="2" fill="#5C3A1E"/>
+  <!-- Ears: Wide -->
+  <ellipse cx="14" cy="12" rx="8" ry="10" fill="#E8D5A8" stroke="#CC9933" stroke-width="1.5"/>
+  <ellipse cx="50" cy="12" rx="8" ry="10" fill="#E8D5A8" stroke="#CC9933" stroke-width="1.5"/>
+  <!-- Legs: Thick, grounded -->
+  <rect x="16" y="48" width="10" height="12" rx="3" fill="#F5E8C8" stroke="#CC9933" stroke-width="1.5"/>
+  <rect x="38" y="48" width="10" height="12" rx="3" fill="#F5E8C8" stroke="#CC9933" stroke-width="1.5"/>
+  <!-- Lantern glow: subtle circle -->
+  <circle cx="32" cy="35" r="6" fill="#FFDD88" opacity="0.3"/>
+</svg>

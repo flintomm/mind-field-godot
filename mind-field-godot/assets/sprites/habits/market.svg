@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Market (Chores): Market stall structure -->
+  <!-- Awning -->
+  <path d="M4,24 L60,24 L56,16 L8,16 Z" fill="#CCB333" stroke="#A6922A" stroke-width="2"/>
+  <path d="M4,24 L60,24 L56,16 L8,16 Z" fill="url(#stripes)" opacity="0.3"/>
+  <defs><pattern id="stripes" width="8" height="8" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="8" y2="8" stroke="#A6922A" stroke-width="1"/></pattern></defs>
+  <!-- Counter -->
+  <rect x="8" y="24" width="48" height="32" rx="4" fill="#CCAA33" stroke="#A6922A" stroke-width="2"/>
+  <!-- Goods display -->
+  <circle cx="20" cy="36" r="4" fill="#E6CC55"/>
+  <circle cx="32" cy="36" r="4" fill="#E6CC55"/>
+  <circle cx="44" cy="36" r="4" fill="#E6CC55"/>
+  <!-- Posts -->
+  <rect x="8" y="16" width="3" height="40" fill="#8B7024"/>
+  <rect x="53" y="16" width="3" height="40" fill="#8B7024"/>
+</svg>

@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://habit_visual"]
+
+[ext_resource type="Script" path="res://scripts/habits/habit_visual.gd" id="1"]
+
+[node name="HabitVisual" type="Node2D"]
+script = ExtResource("1")
+
+[node name="FoundationSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -25.0
+offset_top = -40.0
+offset_right = 25.0
+offset_bottom = -33.0
+value = 100.0
+show_percentage = false
+
+[node name="NameLabel" type="Label" parent="."]
+offset_left = -30.0
+offset_top = 25.0
+offset_right = 30.0
+offset_bottom = 38.0
+horizontal_alignment = 1
+
+[node name="LevelLabel" type="Label" parent="."]
+offset_left = -15.0
+offset_top = 36.0
+offset_right = 15.0
+offset_bottom = 48.0
+horizontal_alignment = 1
+
+[node name="ModuleSlots" type="Node2D" parent="."]

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Forge (Discipline): Industrial anvil structure -->
+  <rect x="10" y="28" width="44" height="28" rx="4" fill="#E66633" stroke="#B34D26" stroke-width="2"/>
+  <!-- Chimney -->
+  <rect x="40" y="8" width="10" height="24" rx="2" fill="#CC5528"/>
+  <!-- Smoke -->
+  <circle cx="45" cy="6" r="4" fill="#888" opacity="0.3"/>
+  <circle cx="48" cy="2" r="3" fill="#888" opacity="0.2"/>
+  <!-- Anvil -->
+  <path d="M20,38 L26,34 L38,34 L44,38 L40,42 L24,42 Z" fill="#B34D26"/>
+  <!-- Hammer -->
+  <rect x="28" y="26" width="3" height="10" fill="#8B4513"/>
+  <rect x="24" y="24" width="11" height="4" rx="1" fill="#666"/>
+  <!-- Fire glow -->
+  <circle cx="32" cy="48" r="6" fill="#FF8833" opacity="0.4"/>
+</svg>

@@ -1,0 +1,3 @@
+res://scripts/main.gd
+res://scenes/districts/district_visual.tscn
+res://scripts/districts/district_visual.gd

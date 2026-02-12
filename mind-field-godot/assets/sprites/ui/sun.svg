@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Sun - bright yellow/orange circle with rays -->
+  <circle cx="32" cy="32" r="20" fill="#FFD93D" />
+  <circle cx="32" cy="32" r="14" fill="#FFE066" />
+  <!-- Rays -->
+  <g stroke="#FFD93D" stroke-width="3" stroke-linecap="round">
+    <line x1="32" y1="4" x2="32" y2="10" />
+    <line x1="32" y1="54" x2="32" y2="60" />
+    <line x1="4" y1="32" x2="10" y2="32" />
+    <line x1="54" y1="32" x2="60" y2="32" />
+    <line x1="12" y1="12" x2="16" y2="16" />
+    <line x1="48" y1="48" x2="52" y2="52" />
+    <line x1="12" y1="52" x2="16" y2="48" />
+    <line x1="48" y1="16" x2="52" y2="12" />
+  </g>
+  <!-- Glow effect -->
+  <circle cx="32" cy="32" r="24" fill="none" stroke="#FFD93D" stroke-width="2" opacity="0.5" />
+</svg>

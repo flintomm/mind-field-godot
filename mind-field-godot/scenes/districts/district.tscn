@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://district_scene"]
+
+[node name="District" type="Node2D"]
+
+[node name="TerrainSprite" type="Sprite2D" parent="."]
+
+[node name="Structures" type="Node2D" parent="."]

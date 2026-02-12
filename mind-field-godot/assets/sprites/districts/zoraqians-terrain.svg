@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- Zoraqians District: Creep terrain, organic, pulsing -->
+  <rect width="256" height="256" fill="#3D2B48"/>
+  <!-- Creep spread -->
+  <ellipse cx="128" cy="128" rx="120" ry="100" fill="#2E1F36"/>
+  <ellipse cx="80" cy="160" rx="60" ry="40" fill="#251832"/>
+  <ellipse cx="200" cy="100" rx="50" ry="35" fill="#251832"/>
+  <!-- Vein networks -->
+  <path d="M30,128 Q80,100 128,128 Q176,156 226,128" fill="none" stroke="#8CD940" stroke-width="2" opacity="0.3"/>
+  <path d="M128,20 Q100,80 128,128 Q156,176 128,236" fill="none" stroke="#8CD940" stroke-width="2" opacity="0.3"/>
+  <path d="M50,50 Q90,90 128,128" fill="none" stroke="#6BA830" stroke-width="1" opacity="0.2"/>
+  <path d="M206,50 Q166,90 128,128" fill="none" stroke="#6BA830" stroke-width="1" opacity="0.2"/>
+  <!-- Spore clusters -->
+  <circle cx="60" cy="80" r="4" fill="#8CD940" opacity="0.4"/>
+  <circle cx="200" cy="180" r="5" fill="#8CD940" opacity="0.3"/>
+  <circle cx="140" cy="60" r="3" fill="#8CD940" opacity="0.5"/>
+</svg>

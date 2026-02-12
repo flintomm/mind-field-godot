@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://habit_foundation"]
+
+[node name="HabitFoundation" type="Node2D"]
+
+[node name="BaseSprite" type="Sprite2D" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -30
+offset_top = -50
+offset_right = 30
+offset_bottom = -40

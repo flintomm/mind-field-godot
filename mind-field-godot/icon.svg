@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- Mind-Field Icon: Four quadrants representing the four banks -->
+  <rect width="128" height="128" rx="16" fill="#2A2A3D"/>
+  <!-- Ivorai quadrant (top-left) -->
+  <rect x="8" y="8" width="52" height="52" rx="8" fill="#F5E8C8" opacity="0.8"/>
+  <circle cx="34" cy="34" r="12" fill="#FFDD88" opacity="0.5"/>
+  <!-- Glyffins quadrant (top-right) -->
+  <rect x="68" y="8" width="52" height="52" rx="8" fill="#BFBFBF" opacity="0.8"/>
+  <polygon points="94,18 106,28 106,40 94,50 82,40 82,28" fill="#B8942D" opacity="0.5"/>
+  <!-- Zoraqians quadrant (bottom-left) -->
+  <rect x="8" y="68" width="52" height="52" rx="8" fill="#4D2659" opacity="0.8"/>
+  <circle cx="34" cy="94" r="8" fill="#8CD940" opacity="0.5"/>
+  <!-- Yagari quadrant (bottom-right) -->
+  <rect x="68" y="68" width="52" height="52" rx="8" fill="#1F1F2E" opacity="0.8"/>
+  <ellipse cx="94" cy="88" rx="8" ry="6" fill="#668CA6" opacity="0.5"/>
+  <!-- Central thought bubble -->
+  <circle cx="64" cy="64" r="16" fill="white" opacity="0.9"/>
+  <circle cx="54" cy="72" r="5" fill="white" opacity="0.7"/>
+  <circle cx="48" cy="78" r="3" fill="white" opacity="0.5"/>
+</svg>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Morph Stage 1: Shoes — visible boots at bottom -->
+  <rect x="12" y="48" width="14" height="12" rx="4" fill="#888" stroke="#555" stroke-width="2"/>
+  <rect x="38" y="48" width="14" height="12" rx="4" fill="#888" stroke="#555" stroke-width="2"/>
+  <path d="M12,56 Q10,60 14,60 L26,60 Q28,60 26,56" fill="#666"/>
+  <path d="M38,56 Q36,60 40,60 L52,60 Q54,60 52,56" fill="#666"/>
+</svg>

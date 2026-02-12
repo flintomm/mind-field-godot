@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Morph Stage 4: Helm — crowned helmet -->
+  <path d="M16,24 Q16,8 32,4 Q48,8 48,24 L48,32 Q48,36 44,36 L20,36 Q16,36 16,32Z" fill="#BBB" stroke="#888" stroke-width="2"/>
+  <rect x="22" y="28" width="8" height="4" rx="1" fill="#333"/>
+  <rect x="34" y="28" width="8" height="4" rx="1" fill="#333"/>
+  <!-- Crown spikes -->
+  <polygon points="20,8 24,0 28,8" fill="#FFD700"/>
+  <polygon points="28,6 32,0 36,6" fill="#FFD700"/>
+  <polygon points="36,8 40,0 44,8" fill="#FFD700"/>
+</svg>

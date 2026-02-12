@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://habit_scene"]
+
+[node name="HabitVisual" type="Node2D"]
+
+[node name="FoundationSprite" type="Sprite2D" parent="."]
+
+[node name="ModuleSlots" type="Node2D" parent="."]

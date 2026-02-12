@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Morph Stage 2: Gloves — armored gauntlets -->
+  <rect x="4" y="24" width="12" height="18" rx="3" fill="#999" stroke="#666" stroke-width="2"/>
+  <rect x="48" y="24" width="12" height="18" rx="3" fill="#999" stroke="#666" stroke-width="2"/>
+  <circle cx="10" cy="44" r="5" fill="#AAA" stroke="#666" stroke-width="1.5"/>
+  <circle cx="54" cy="44" r="5" fill="#AAA" stroke="#666" stroke-width="1.5"/>
+</svg>

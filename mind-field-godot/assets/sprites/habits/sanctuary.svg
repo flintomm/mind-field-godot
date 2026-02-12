@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Sanctuary (Rest): Peaceful dome structure -->
+  <ellipse cx="32" cy="36" rx="26" ry="20" fill="#9966CC" stroke="#6B3FA0" stroke-width="2"/>
+  <!-- Dome top -->
+  <path d="M6,36 Q32,4 58,36" fill="#8855BB" stroke="#6B3FA0" stroke-width="2"/>
+  <!-- Moon/rest symbol -->
+  <path d="M28,18 Q38,14 34,24 Q28,22 28,18Z" fill="#D4B8E8"/>
+  <!-- Entrance -->
+  <path d="M24,56 Q24,40 32,38 Q40,40 40,56" fill="#6B3FA0"/>
+  <!-- Glow -->
+  <circle cx="32" cy="30" r="8" fill="#D4B8E8" opacity="0.2"/>
+</svg>
