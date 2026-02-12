@@ -1,3 +1,11 @@
 res://scripts/main.gd
 res://scenes/districts/district_visual.tscn
 res://scripts/districts/district_visual.gd
+res://scenes/entities/attendee.tscn
+res://scenes/entities/day_unit.tscn
+res://scenes/entities/thought_bubble.tscn
+res://scripts/event_bus.gd
+res://scripts/day_unit/day_unit_controller.gd
+res://scripts/entities/attendee_visual.gd
+res://scripts/ui/thought_bubble.gd
+res://scripts/ui/ui_manager.gd

@@ -1,5 +1,4 @@
-## DistrictVisual — Visual representation of a district in the park map.
-## Features organic/irregular borders instead of perfect squares.
+## DistrictVisual — Large organic district terrain with distinct visual identity.
 extends Node2D
 
 @onready var terrain: Polygon2D = $Terrain
@@ -9,14 +8,11 @@ extends Node2D
 @onready var particles: GPUParticles2D = $AmbientParticles
 
 var _border_lines: Node2D
-
 var _district: District
 var _size: Vector2
 var _pulse_phase: float = 0.0
 var _corner_points: Array[Vector2] = []
 var _random_seed: int = 0
-
-const DISTRICT_NAMES := ["Ivorai Grove", "Glyffinworks", "Zoraqian Depths", "Yagari Sanctum"]
 
 func setup(district: District, size: Vector2) -> void:
 	_district = district
@@ -24,196 +20,103 @@ func setup(district: District, size: Vector2) -> void:
 	_random_seed = hash(district.district_name) & 0x7FFFFFFF
 	_border_lines = get_node_or_null("BorderLines")
 
-	# Generate organic border points
-	_generate_border_points()
+	_generate_organic_shape()
 
-	# Terrain with organic shape
 	if terrain:
 		terrain.polygon = PackedVector2Array(_corner_points)
 		terrain.color = district.terrain_color
 
-	# Border lines
-	_draw_irregular_border()
+	_draw_border()
 
-	# Name
 	if name_label:
 		name_label.text = district.district_name
-		name_label.position = Vector2(_size.x / 2.0, -20)
+		name_label.position = Vector2(_size.x / 2.0 - 100, 30)
+		name_label.size = Vector2(200, 40)
 		name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		name_label.add_theme_color_override("font_color", district.ambient_color)
-		name_label.add_theme_font_size_override("font_size", 16)
+		name_label.add_theme_color_override("font_color", district.ambient_color.lerp(Color.WHITE, 0.6))
+		name_label.add_theme_font_size_override("font_size", 22)
 
-	# Traffic
 	if traffic_label:
-		traffic_label.position = Vector2(_size.x / 2.0, _size.y - 20)
+		traffic_label.position = Vector2(_size.x / 2.0 - 80, _size.y - 50)
+		traffic_label.size = Vector2(160, 30)
 		traffic_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		traffic_label.add_theme_font_size_override("font_size", 12)
+		traffic_label.add_theme_font_size_override("font_size", 13)
 
-	# Grid overlay
-	_draw_grid()
-
-	# Ambient particles
+	_draw_terrain_details()
 	_setup_particles()
 
-func _generate_border_points() -> void:
+func _generate_organic_shape() -> void:
 	_corner_points.clear()
-	var local_seed: int = _random_seed
-	
-	# Base rectangle corners
-	var corners_array: Array[Vector2] = [
-		Vector2(0, 0),
-		Vector2(_size.x, 0),
-		Vector2(_size.x, _size.y),
-		Vector2(0, _size.y)
-	]
-	
-	# Add intermediate points with random offset for irregularity
-	var steps_per_side: int = 3
-	var random := RandomNumberGenerator.new()
-	random.seed = local_seed
-	
-	for i: int in range(4):
-		var start: Vector2 = corners_array[i]
-		var end: Vector2 = corners_array[(i + 1) % 4]
-		
-		_corner_points.append(start)
-		
-		for j: int in range(1, steps_per_side):
-			var t: float = float(j) / float(steps_per_side)
-			var base: Vector2 = start.lerp(end, t)
-			
-			# Add organic irregularity - more at corners
-			var corner_factor: float = 1.0 if j == steps_per_side - 1 else 0.3
-			var offset: float = random.randf_range(-15, 15) * corner_factor
-			
-			var is_horizontal: bool = (i == 0 or i == 2)
-			if is_horizontal:
-				base.y += offset
-			else:
-				base.x += offset
-			
-			_corner_points.append(base)
-	_corner_points.append(corners_array[0])  # Close the polygon
+	var rng := RandomNumberGenerator.new()
+	rng.seed = _random_seed
 
-func _draw_irregular_border() -> void:
-	if _border_lines:
-		for child in _border_lines.get_children():
-			child.queue_free()
-	
-	var line_color: Color = _district.ambient_color
+	# Create organic blob shape using perturbed ellipse
+	var center := _size / 2.0
+	var rx := _size.x * 0.45
+	var ry := _size.y * 0.45
+	var num_points := 24
+
+	for i in range(num_points):
+		var angle := float(i) / float(num_points) * TAU
+		var noise := rng.randf_range(-0.08, 0.08)
+		var r_x := rx * (1.0 + noise + sin(angle * 3.0) * 0.06)
+		var r_y := ry * (1.0 + noise + cos(angle * 2.0) * 0.05)
+		var point := center + Vector2(cos(angle) * r_x, sin(angle) * r_y)
+		_corner_points.append(point)
+
+func _draw_border() -> void:
+	if _border_lines == null:
+		return
+	for child in _border_lines.get_children():
+		child.queue_free()
+
+	# Main border
 	var line := Line2D.new()
-	line.width = 3.0
-	line.default_color = line_color
-	
-	# Create points along the border with slight organic wobble
-	var random := RandomNumberGenerator.new()
-	random.seed = _random_seed + 1
-	
-	var corner_array: Array[Vector2] = [
-		Vector2(0, 0),
-		Vector2(_size.x, 0),
-		Vector2(_size.x, _size.y),
-		Vector2(0, _size.y)
-	]
-	
-	for i: int in range(_corner_points.size() - 1):
-		var p1: Vector2 = _corner_points[i]
-		var p2: Vector2 = _corner_points[i + 1]
-		
-		# Add intermediate points for organic feel
-		var segments: int = 3
-		for j: int in range(segments):
-			var t: float = float(j) / float(segments)
-			var base: Vector2 = p1.lerp(p2, t)
-			
-			# Small random wobble
-			var wobble: float = random.randf_range(-2, 2)
-			if i % 2 == 0:
-				base += Vector2(wobble, wobble * 0.5)
-			else:
-				base += Vector2(-wobble, -wobble * 0.5)
-			
-			line.add_point(base)
-	
+	line.width = 4.0
+	line.default_color = _district.ambient_color.lerp(Color.WHITE, 0.3)
+	line.default_color.a = 0.6
+	line.begin_cap_mode = Line2D.LINE_CAP_ROUND
+	line.end_cap_mode = Line2D.LINE_CAP_ROUND
+	line.antialiased = true
+	for p: Vector2 in _corner_points:
+		line.add_point(p)
+	line.add_point(_corner_points[0])  # Close
 	_border_lines.add_child(line)
-	
-	# Add corner decorations
-	for i: int in range(4):
-		var corner: Vector2 = corner_array[i]
-		var decor: Sprite2D = _create_corner_decor(_district.bank_type)
-		decor.position = corner
-		_border_lines.add_child(decor)
 
-func _create_corner_decor(bank_type: int) -> Sprite2D:
-	var sprite := Sprite2D.new()
-	var tex: Texture2D = _get_bank_tex(bank_type)
-	if tex:
-		sprite.texture = tex
-		sprite.scale = Vector2(0.15, 0.15)
-	return sprite
+	# Outer glow border
+	var glow := Line2D.new()
+	glow.width = 8.0
+	glow.default_color = _district.ambient_color
+	glow.default_color.a = 0.15
+	for p: Vector2 in _corner_points:
+		glow.add_point(p)
+	glow.add_point(_corner_points[0])
+	glow.z_index = -1
+	_border_lines.add_child(glow)
 
-func _get_bank_tex(bank_type: int) -> Texture2D:
-	# Return appropriate texture based on bank type
-	return null
-
-func _draw_grid() -> void:
+func _draw_terrain_details() -> void:
 	if grid_overlay == null:
 		return
 	for child in grid_overlay.get_children():
 		child.queue_free()
-	
-	var random := RandomNumberGenerator.new()
-	random.seed = _random_seed + 2
-	
-	var grid_spacing: float = 100.0
-	var line_color: Color = Color(1, 1, 1, 0.05)
-	
-	# Draw grid with slight organic offset
-	var x: float = grid_spacing
-	while x < _size.x:
-		var line := Line2D.new()
-		var points: Array[Vector2] = []
-		
-		# Find where this vertical line intersects the border
-		for i: int in range(_corner_points.size() - 1):
-			var p1: Vector2 = _corner_points[i]
-			var p2: Vector2 = _corner_points[i + 1]
-			
-			# Simple check if within x range
-			if (p1.x <= x and p2.x >= x) or (p2.x <= x and p1.x >= x):
-				var t: float = (x - p1.x) / (p2.x - p1.x) if p2.x != p1.x else 0.5
-				var y: float = lerp(p1.y, p2.y, t)
-				points.append(Vector2(x, y))
-		
-		if points.size() >= 2:
-			line.add_point(points[0])
-			line.add_point(points[points.size() - 1])
-			line.width = 1.0
-			line.default_color = line_color
-			grid_overlay.add_child(line)
-		x += grid_spacing
-	
-	var y: float = grid_spacing
-	while y < _size.y:
-		var line := Line2D.new()
-		var points: Array[Vector2] = []
-		
-		for i: int in range(_corner_points.size() - 1):
-			var p1: Vector2 = _corner_points[i]
-			var p2: Vector2 = _corner_points[i + 1]
-			
-			if (p1.y <= y and p2.y >= y) or (p2.y <= y and p1.y >= y):
-				var t: float = (y - p1.y) / (p2.y - p1.y) if p2.y != p1.y else 0.5
-				var x_pos: float = lerp(p1.x, p2.x, t)
-				points.append(Vector2(x_pos, y))
-		
-		if points.size() >= 2:
-			line.add_point(points[0])
-			line.add_point(points[points.size() - 1])
-			line.width = 1.0
-			line.default_color = line_color
-			grid_overlay.add_child(line)
-		y += grid_spacing
+
+	var rng := RandomNumberGenerator.new()
+	rng.seed = _random_seed + 10
+
+	# Scatter terrain detail dots instead of grid lines for organic feel
+	var num_details := 30
+	var center := _size / 2.0
+	for i in range(num_details):
+		var angle := rng.randf() * TAU
+		var dist := rng.randf_range(50, minf(_size.x, _size.y) * 0.4)
+		var pos := center + Vector2(cos(angle), sin(angle)) * dist
+
+		var dot := ColorRect.new()
+		dot.size = Vector2(rng.randf_range(3, 8), rng.randf_range(3, 8))
+		dot.position = pos - dot.size / 2.0
+		dot.color = _district.terrain_color.lightened(rng.randf_range(0.1, 0.25))
+		dot.color.a = 0.3
+		grid_overlay.add_child(dot)
 
 func update_visual(district: District) -> void:
 	_district = district
@@ -224,39 +127,38 @@ func update_visual(district: District) -> void:
 func _process(delta: float) -> void:
 	if _district == null:
 		return
-	# Subtle terrain pulse
 	_pulse_phase += delta * 0.3
 	if terrain:
-		var pulse: float = sin(_pulse_phase) * 0.02
+		var pulse: float = sin(_pulse_phase) * 0.015
 		terrain.color = _district.terrain_color.lightened(pulse)
 
 func _setup_particles() -> void:
 	if particles == null or _district == null:
 		return
 	particles.emitting = true
-	particles.amount = 8
-	particles.lifetime = 3.0
+	particles.amount = 15
+	particles.lifetime = 4.0
 	particles.position = _size / 2.0
 
 	var mat := ParticleProcessMaterial.new()
 	mat.emission_shape = ParticleProcessMaterial.EMISSION_SHAPE_BOX
-	mat.emission_box_extents = Vector3(_size.x / 2.0 - 20, _size.y / 2.0 - 20, 0)
+	mat.emission_box_extents = Vector3(_size.x * 0.35, _size.y * 0.35, 0)
 	mat.direction = Vector3(0, -1, 0)
-	mat.spread = 25.0
-	mat.initial_velocity_min = 8.0
-	mat.initial_velocity_max = 20.0
+	mat.spread = 30.0
+	mat.initial_velocity_min = 5.0
+	mat.initial_velocity_max = 15.0
 	mat.gravity = Vector3.ZERO
-	mat.scale_min = 0.8
-	mat.scale_max = 2.5
+	mat.scale_min = 1.0
+	mat.scale_max = 3.0
 
 	match _district.bank_type:
 		Bank.BankType.IVORAI:
-				mat.color = Color(1.0, 0.85, 0.4, 0.25)  # Warm lantern glow
+			mat.color = Color(1.0, 0.85, 0.4, 0.2)
 		Bank.BankType.GLYFFINS:
-				mat.color = Color(0.7, 0.8, 1.0, 0.2)  # Cool geometric
+			mat.color = Color(0.7, 0.8, 1.0, 0.15)
 		Bank.BankType.ZORAQIANS:
-				mat.color = Color(0.5, 0.2, 0.8, 0.15)  # Alien spores
+			mat.color = Color(0.5, 0.2, 0.8, 0.12)
 		Bank.BankType.YAGARI:
-				mat.color = Color(0.2, 0.2, 0.5, 0.1)  # Dark mist
+			mat.color = Color(0.2, 0.2, 0.5, 0.08)
 
 	particles.process_material = mat

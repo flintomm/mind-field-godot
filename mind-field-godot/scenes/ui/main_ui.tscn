@@ -19,7 +19,7 @@ script = ExtResource("1")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 36.0
+offset_bottom = 32.0
 grow_horizontal = 2
 
 [node name="StatusBar" type="HBoxContainer" parent="TopBar"]
@@ -36,7 +36,7 @@ layout_mode = 2
 [node name="TimeLabel" type="Label" parent="TopBar/StatusBar"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "12:00"
+text = "12:00 PM"
 
 [node name="Sep2" type="VSeparator" parent="TopBar/StatusBar"]
 layout_mode = 2
@@ -44,7 +44,7 @@ layout_mode = 2
 [node name="BankBar0" type="ProgressBar" parent="TopBar/StatusBar"]
 unique_name_in_owner = true
 layout_mode = 2
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(60, 0)
 value = 0.0
 show_percentage = false
 
@@ -56,7 +56,7 @@ text = "0"
 [node name="BankBar1" type="ProgressBar" parent="TopBar/StatusBar"]
 unique_name_in_owner = true
 layout_mode = 2
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(60, 0)
 value = 0.0
 show_percentage = false
 
@@ -68,7 +68,7 @@ text = "0"
 [node name="BankBar2" type="ProgressBar" parent="TopBar/StatusBar"]
 unique_name_in_owner = true
 layout_mode = 2
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(60, 0)
 value = 0.0
 show_percentage = false
 
@@ -80,7 +80,7 @@ text = "0"
 [node name="BankBar3" type="ProgressBar" parent="TopBar/StatusBar"]
 unique_name_in_owner = true
 layout_mode = 2
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(60, 0)
 value = 0.0
 show_percentage = false
 
@@ -96,96 +96,158 @@ size_flags_horizontal = 3
 [node name="AttendeeLabel" type="Label" parent="TopBar/StatusBar"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Attendees: 0"
+text = "👥 0"
 
-[node name="SidePanel" type="PanelContainer" parent="."]
+[node name="BottomPanel" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 0.0
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -300.0
-offset_top = 40.0
-grow_horizontal = 0
-grow_vertical = 2
+offset_top = -180.0
+grow_horizontal = 2
+grow_vertical = 0
 
-[node name="VBox" type="VBoxContainer" parent="SidePanel"]
+[node name="BottomHBox" type="HBoxContainer" parent="BottomPanel"]
 layout_mode = 2
 
-[node name="TabBar" type="HBoxContainer" parent="SidePanel/VBox"]
+[node name="Minimap" type="PanelContainer" parent="BottomPanel/BottomHBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(200, 0)
+
+[node name="MinimapRect" type="ColorRect" parent="BottomPanel/BottomHBox/Minimap"]
+unique_name_in_owner = true
+layout_mode = 2
+color = Color(0.08, 0.12, 0.08, 0.9)
+
+[node name="MinimapIvorai" type="ColorRect" parent="BottomPanel/BottomHBox/Minimap/MinimapRect"]
+layout_mode = 1
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 93.0
+offset_bottom = 75.0
+color = Color(0.85, 0.78, 0.55, 0.5)
+
+[node name="MinimapGlyffins" type="ColorRect" parent="BottomPanel/BottomHBox/Minimap/MinimapRect"]
+layout_mode = 1
+offset_left = 103.0
+offset_top = 5.0
+offset_right = 191.0
+offset_bottom = 75.0
+color = Color(0.7, 0.72, 0.75, 0.5)
+
+[node name="MinimapZoraqians" type="ColorRect" parent="BottomPanel/BottomHBox/Minimap/MinimapRect"]
+layout_mode = 1
+offset_left = 5.0
+offset_top = 85.0
+offset_right = 93.0
+offset_bottom = 155.0
+color = Color(0.25, 0.18, 0.30, 0.5)
+
+[node name="MinimapYagari" type="ColorRect" parent="BottomPanel/BottomHBox/Minimap/MinimapRect"]
+layout_mode = 1
+offset_left = 103.0
+offset_top = 85.0
+offset_right = 191.0
+offset_bottom = 155.0
+color = Color(0.15, 0.15, 0.2, 0.5)
+
+[node name="CameraIndicator" type="ColorRect" parent="BottomPanel/BottomHBox/Minimap/MinimapRect"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 70.0
+offset_bottom = 60.0
+color = Color(1, 1, 1, 0.6)
+
+[node name="CenterPanel" type="VBoxContainer" parent="BottomPanel/BottomHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TabBar" type="HBoxContainer" parent="BottomPanel/BottomHBox/CenterPanel"]
 layout_mode = 2
 
-[node name="TabSnippet" type="Button" parent="SidePanel/VBox/TabBar"]
+[node name="TabSnippet" type="Button" parent="BottomPanel/BottomHBox/CenterPanel/TabBar"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Snippets"
+text = "💬 Snippets"
 
-[node name="TabHabits" type="Button" parent="SidePanel/VBox/TabBar"]
+[node name="TabHabits" type="Button" parent="BottomPanel/BottomHBox/CenterPanel/TabBar"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Habits"
+text = "🏗️ Habits"
 
-[node name="TabDayUnit" type="Button" parent="SidePanel/VBox/TabBar"]
+[node name="TabDayUnit" type="Button" parent="BottomPanel/BottomHBox/CenterPanel/TabBar"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Unit"
+text = "👤 Unit"
 
-[node name="ContentArea" type="PanelContainer" parent="SidePanel/VBox"]
+[node name="ContentArea" type="PanelContainer" parent="BottomPanel/BottomHBox/CenterPanel"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="SnippetPanel" type="VBoxContainer" parent="SidePanel/VBox/ContentArea"]
+[node name="SnippetPanel" type="VBoxContainer" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea"]
 unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("2")
 
-[node name="BankSelector" type="HBoxContainer" parent="SidePanel/VBox/ContentArea/SnippetPanel"]
+[node name="BankSelector" type="HBoxContainer" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/SnippetPanel"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 36)
+custom_minimum_size = Vector2(0, 30)
 
-[node name="BankBtn0" type="Button" parent="SidePanel/VBox/ContentArea/SnippetPanel/BankSelector"]
+[node name="BankBtn0" type="Button" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/SnippetPanel/BankSelector"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Ivo"
+text = "Ivorai"
 
-[node name="BankBtn1" type="Button" parent="SidePanel/VBox/ContentArea/SnippetPanel/BankSelector"]
+[node name="BankBtn1" type="Button" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/SnippetPanel/BankSelector"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Gly"
+text = "Glyffins"
 
-[node name="BankBtn2" type="Button" parent="SidePanel/VBox/ContentArea/SnippetPanel/BankSelector"]
+[node name="BankBtn2" type="Button" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/SnippetPanel/BankSelector"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Zor"
+text = "Zoraqians"
 
-[node name="BankBtn3" type="Button" parent="SidePanel/VBox/ContentArea/SnippetPanel/BankSelector"]
+[node name="BankBtn3" type="Button" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/SnippetPanel/BankSelector"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Yag"
+text = "Yagari"
 
-[node name="SnippetInput" type="TextEdit" parent="SidePanel/VBox/ContentArea/SnippetPanel"]
-unique_name_in_owner = true
+[node name="InputRow" type="HBoxContainer" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/SnippetPanel"]
 layout_mode = 2
 size_flags_vertical = 3
-custom_minimum_size = Vector2(0, 80)
+
+[node name="SnippetInput" type="TextEdit" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/SnippetPanel/InputRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 60)
 placeholder_text = "What's on your mind?"
 
-[node name="MoodRow" type="HBoxContainer" parent="SidePanel/VBox/ContentArea/SnippetPanel"]
+[node name="SubmitButton" type="Button" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/SnippetPanel/InputRow"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(80, 0)
+text = "Submit"
+
+[node name="MoodRow" type="HBoxContainer" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/SnippetPanel"]
 layout_mode = 2
 
-[node name="MoodLabelPrefix" type="Label" parent="SidePanel/VBox/ContentArea/SnippetPanel/MoodRow"]
+[node name="MoodLabelPrefix" type="Label" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/SnippetPanel/MoodRow"]
 layout_mode = 2
 text = "Mood:"
 
-[node name="MoodSlider" type="HSlider" parent="SidePanel/VBox/ContentArea/SnippetPanel/MoodRow"]
+[node name="MoodSlider" type="HSlider" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/SnippetPanel/MoodRow"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -193,201 +255,268 @@ min_value = -1.0
 max_value = 1.0
 step = 0.1
 
-[node name="MoodLabel" type="Label" parent="SidePanel/VBox/ContentArea/SnippetPanel/MoodRow"]
+[node name="MoodLabel" type="Label" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/SnippetPanel/MoodRow"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Neutral"
 
-[node name="SubmitButton" type="Button" parent="SidePanel/VBox/ContentArea/SnippetPanel"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Submit Snippet"
-
-[node name="HabitPanel" type="VBoxContainer" parent="SidePanel/VBox/ContentArea"]
+[node name="HabitPanel" type="VBoxContainer" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 script = ExtResource("3")
 
-[node name="CreateRow" type="HBoxContainer" parent="SidePanel/VBox/ContentArea/HabitPanel"]
+[node name="CreateRow" type="HBoxContainer" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/HabitPanel"]
 layout_mode = 2
 
-[node name="HabitNameInput" type="LineEdit" parent="SidePanel/VBox/ContentArea/HabitPanel/CreateRow"]
+[node name="HabitNameInput" type="LineEdit" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/HabitPanel/CreateRow"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Habit name..."
 
-[node name="FoundationDropdown" type="OptionButton" parent="SidePanel/VBox/ContentArea/HabitPanel/CreateRow"]
+[node name="FoundationDropdown" type="OptionButton" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/HabitPanel/CreateRow"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="CreateHabitButton" type="Button" parent="SidePanel/VBox/ContentArea/HabitPanel/CreateRow"]
+[node name="CreateHabitButton" type="Button" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/HabitPanel/CreateRow"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Create"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="SidePanel/VBox/ContentArea/HabitPanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/HabitPanel"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HabitList" type="VBoxContainer" parent="SidePanel/VBox/ContentArea/HabitPanel/ScrollContainer"]
+[node name="HabitList" type="VBoxContainer" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/HabitPanel/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DayUnitPanel" type="VBoxContainer" parent="SidePanel/VBox/ContentArea"]
+[node name="DayUnitPanel" type="VBoxContainer" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 script = ExtResource("4")
 
-[node name="RaceLabel" type="Label" parent="SidePanel/VBox/ContentArea/DayUnitPanel"]
+[node name="RaceLabel" type="Label" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/DayUnitPanel"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "No Day Unit yet"
 
-[node name="StageLabel" type="Label" parent="SidePanel/VBox/ContentArea/DayUnitPanel"]
+[node name="StageLabel" type="Label" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/DayUnitPanel"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="SnippetCountLabel" type="Label" parent="SidePanel/VBox/ContentArea/DayUnitPanel"]
+[node name="SnippetCountLabel" type="Label" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/DayUnitPanel"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="ActiveTimeLabel" type="Label" parent="SidePanel/VBox/ContentArea/DayUnitPanel"]
+[node name="ActiveTimeLabel" type="Label" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/DayUnitPanel"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="BarsLabel" type="Label" parent="SidePanel/VBox/ContentArea/DayUnitPanel"]
+[node name="BarsLabel" type="Label" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/DayUnitPanel"]
 layout_mode = 2
 text = "Mood / Energy / Focus"
 
-[node name="MoodBar" type="ProgressBar" parent="SidePanel/VBox/ContentArea/DayUnitPanel"]
+[node name="MoodBar" type="ProgressBar" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/DayUnitPanel"]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 100.0
 show_percentage = false
 
-[node name="EnergyBar" type="ProgressBar" parent="SidePanel/VBox/ContentArea/DayUnitPanel"]
-unique_name_in_owner = true
-layout_mode = 2
-max_value = 100.0
-value = 50.0
-show_percentage = false
-
-[node name="FocusBar" type="ProgressBar" parent="SidePanel/VBox/ContentArea/DayUnitPanel"]
+[node name="EnergyBar" type="ProgressBar" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/DayUnitPanel"]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 100.0
 value = 50.0
 show_percentage = false
 
-[node name="AttendeeHeader" type="Label" parent="SidePanel/VBox/ContentArea/DayUnitPanel"]
+[node name="FocusBar" type="ProgressBar" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/DayUnitPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 100.0
+value = 50.0
+show_percentage = false
+
+[node name="AttendeeHeader" type="Label" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/DayUnitPanel"]
 layout_mode = 2
 text = "Past Attendees:"
 
-[node name="AttendeeScroll" type="ScrollContainer" parent="SidePanel/VBox/ContentArea/DayUnitPanel"]
+[node name="AttendeeScroll" type="ScrollContainer" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/DayUnitPanel"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="AttendeeList" type="VBoxContainer" parent="SidePanel/VBox/ContentArea/DayUnitPanel/AttendeeScroll"]
+[node name="AttendeeList" type="VBoxContainer" parent="BottomPanel/BottomHBox/CenterPanel/ContentArea/DayUnitPanel/AttendeeScroll"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Minimap" type="PanelContainer" parent="."]
+[node name="DistrictButtons" type="HBoxContainer" parent="BottomPanel/BottomHBox/CenterPanel"]
+layout_mode = 2
+
+[node name="BtnIvorai" type="Button" parent="BottomPanel/BottomHBox/CenterPanel/DistrictButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🌾 Ivorai"
+flat = true
+
+[node name="BtnGlyffins" type="Button" parent="BottomPanel/BottomHBox/CenterPanel/DistrictButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "⚙️ Glyffins"
+flat = true
+
+[node name="BtnZoraqians" type="Button" parent="BottomPanel/BottomHBox/CenterPanel/DistrictButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🔮 Zoraqians"
+flat = true
+
+[node name="BtnYagari" type="Button" parent="BottomPanel/BottomHBox/CenterPanel/DistrictButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🌑 Yagari"
+flat = true
+
+[node name="SelectionPanel" type="PanelContainer" parent="."]
+visible = false
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = -140.0
-offset_right = 170.0
-offset_bottom = -10.0
+offset_left = -280.0
+offset_top = 36.0
+offset_bottom = -184.0
+grow_horizontal = 0
+grow_vertical = 2
 
-[node name="MinimapRect" type="ColorRect" parent="Minimap"]
+[node name="SelectionVBox" type="VBoxContainer" parent="SelectionPanel"]
+layout_mode = 2
+
+[node name="SelectionTitle" type="Label" parent="SelectionPanel/SelectionVBox"]
 unique_name_in_owner = true
 layout_mode = 2
-color = Color(0.1, 0.15, 0.1, 0.8)
+text = "Selected Unit"
+horizontal_alignment = 1
 
-[node name="MinimapIvorai" type="ColorRect" parent="Minimap/MinimapRect"]
-layout_mode = 1
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 78.0
-offset_bottom = 62.0
-color = Color(0.85, 0.78, 0.55, 0.6)
+[node name="HSeparator" type="HSeparator" parent="SelectionPanel/SelectionVBox"]
+layout_mode = 2
 
-[node name="MinimapGlyffins" type="ColorRect" parent="Minimap/MinimapRect"]
-layout_mode = 1
-offset_left = 82.0
-offset_top = 2.0
-offset_right = 158.0
-offset_bottom = 62.0
-color = Color(0.7, 0.72, 0.75, 0.6)
-
-[node name="MinimapZoraqians" type="ColorRect" parent="Minimap/MinimapRect"]
-layout_mode = 1
-offset_left = 2.0
-offset_top = 66.0
-offset_right = 78.0
-offset_bottom = 126.0
-color = Color(0.25, 0.18, 0.30, 0.6)
-
-[node name="MinimapYagari" type="ColorRect" parent="Minimap/MinimapRect"]
-layout_mode = 1
-offset_left = 82.0
-offset_top = 66.0
-offset_right = 158.0
-offset_bottom = 126.0
-color = Color(0.15, 0.15, 0.2, 0.6)
-
-[node name="CameraIndicator" type="ColorRect" parent="Minimap/MinimapRect"]
-unique_name_in_owner = true
-layout_mode = 1
-offset_left = 40.0
-offset_top = 40.0
-offset_right = 60.0
-offset_bottom = 50.0
-color = Color(1, 1, 1, 0.5)
-
-[node name="DistrictButtons" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -120.0
-offset_top = -35.0
-offset_right = 120.0
-grow_horizontal = 2
-
-[node name="BtnIvorai" type="Button" parent="DistrictButtons"]
+[node name="UnitPortrait" type="ColorRect" parent="SelectionPanel/SelectionVBox"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Ivorai"
-flat = true
+custom_minimum_size = Vector2(0, 80)
+color = Color(0.15, 0.15, 0.2, 1)
 
-[node name="BtnGlyffins" type="Button" parent="DistrictButtons"]
+[node name="UnitName" type="Label" parent="SelectionPanel/SelectionVBox"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Glyffins"
-flat = true
+text = "Unit Name"
+horizontal_alignment = 1
 
-[node name="BtnZoraqians" type="Button" parent="DistrictButtons"]
+[node name="UnitType" type="Label" parent="SelectionPanel/SelectionVBox"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Zoraqians"
-flat = true
+text = "Type"
 
-[node name="BtnYagari" type="Button" parent="DistrictButtons"]
+[node name="UnitRace" type="Label" parent="SelectionPanel/SelectionVBox"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Yagari"
-flat = true
+text = "Race"
+
+[node name="UnitStage" type="Label" parent="SelectionPanel/SelectionVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Stage"
+
+[node name="UnitSnippets" type="Label" parent="SelectionPanel/SelectionVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Snippets: 0"
+
+[node name="UnitActive" type="Label" parent="SelectionPanel/SelectionVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Active: 0m"
+
+[node name="UnitBirthday" type="Label" parent="SelectionPanel/SelectionVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Born: Unknown"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="SelectionPanel/SelectionVBox"]
+layout_mode = 2
+
+[node name="UnitThoughtsHeader" type="Label" parent="SelectionPanel/SelectionVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Thoughts"
+horizontal_alignment = 1
+
+[node name="UnitThoughts" type="RichTextLabel" parent="SelectionPanel/SelectionVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 80)
+bbcode_enabled = true
+text = "No thoughts recorded."
+
+[node name="HSeparator2" type="HSeparator" parent="SelectionPanel/SelectionVBox"]
+layout_mode = 2
+
+[node name="UnitBio" type="RichTextLabel" parent="SelectionPanel/SelectionVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
+bbcode_enabled = true
+text = "Bio text here..."
+fit_content = true
+
+[node name="HSeparator3" type="HSeparator" parent="SelectionPanel/SelectionVBox"]
+layout_mode = 2
+
+[node name="StatsHeader" type="Label" parent="SelectionPanel/SelectionVBox"]
+layout_mode = 2
+text = "Stats"
+horizontal_alignment = 1
+
+[node name="EnergyBar" type="ProgressBar" parent="SelectionPanel/SelectionVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 100.0
+value = 50.0
+show_percentage = false
+
+[node name="EnergyLabel" type="Label" parent="SelectionPanel/SelectionVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Energy: 50"
+
+[node name="FocusBar" type="ProgressBar" parent="SelectionPanel/SelectionVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 100.0
+value = 50.0
+show_percentage = false
+
+[node name="FocusLabel" type="Label" parent="SelectionPanel/SelectionVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Focus: 50"
+
+[node name="MoodLabel" type="Label" parent="SelectionPanel/SelectionVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Mood: Neutral"
+
+[node name="Spacer" type="Control" parent="SelectionPanel/SelectionVBox"]
+layout_mode = 2
+size_flags_vertical = 3

@@ -1,5 +1,4 @@
 ## EventBus — Global signal hub for decoupled communication between systems.
-## Autoloaded singleton. All game events flow through here.
 extends Node
 
 # Bank events
@@ -28,3 +27,7 @@ signal game_loaded()
 # UI events
 signal ui_panel_changed(panel_name: String)
 signal snippet_submitted(content: String, bank_type: int, mood: float)
+
+# Selection events (SC2-style click-to-inspect)
+signal unit_selected(info: Dictionary)
+signal unit_deselected()
